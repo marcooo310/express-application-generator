@@ -1,5 +1,4 @@
 const { index } = require("./mainController");
-
 const get = (req,res) => {
 
   const prodi = [
