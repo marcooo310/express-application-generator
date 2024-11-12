@@ -1,6 +1,4 @@
-const { index } = require("./mainController");
-const get = (req,res) => {
-
+const index = (req,res) => {
   const prodi = [
       {
           prodi: "Sistem Informasi",
