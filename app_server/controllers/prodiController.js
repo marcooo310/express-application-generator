@@ -35,7 +35,7 @@ const get = (req,res) => {
 
   ]
 
-  res.render('Prodi' , {title : "Prodi", prodi, layout : 'main'});
+  res.render('prodi' , {title : "Prodi", prodi, layout : 'main'});
 };
 
 module.exports = {index}
