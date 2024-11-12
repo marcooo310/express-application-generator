@@ -19,7 +19,7 @@ const about = (req, res) => {
 
 // route /contact
 const contact = (req,res) => {
-  res.render('Contact' , {title : 'Contact Us', layout : 'main'});
+  res.render('contact' , {title : 'Contact Us', layout : 'main'});
 }
 
 module.exports = {index, about, contact}

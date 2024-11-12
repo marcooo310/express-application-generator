@@ -4,7 +4,7 @@ const index = async (req, res) => {
     try{
         // Mendapatkan data fakultas dari API eksternal
         const response = await axios.get(
-            "https://crud-express-seven.vercel.app/api/fakultas"
+            "https://express-application-generator-two.vercel.app/"
         );
 
         // Data fakultas dari API
