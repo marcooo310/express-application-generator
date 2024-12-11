@@ -1,25 +1,24 @@
-const index = (req, res, ) => {
+const index = (req,res) => {
   const berita = [
       {
-          judul:"Berita 1",
-          isi: "Isi berita 1"
+          judul: 'Berita 1',
+          isi: 'Isi Berita 1'
       },
       {
-          judul:"Berita 2",
-          isi: "Isi berita 2"
+          judul: 'Berita 2',
+          isi: 'Isi Berita 2'
       },
   ];
-  res.render('index' , {title : 'Halaman Home', berita, layout : 'main'});
+
+  res.render('index', {title : 'Halaman Home', berita , layout : 'main'});
+};
+const about = (req,res) => {
+    res.render('about', {title : 'About Us', layout : 'main'});
 };
 
-// route /about
-const about = (req, res) => {
-  res.render('about' , {title : 'About Us', layout : 'main' });
-}
-
-// route /contact
 const contact = (req,res) => {
-  res.render('contact' , {title : 'Contact Us', layout : 'main'});
-}
+    res.render('contact', {title : 'Contact Us', layout : 'main'});
+};
+
 
 module.exports = {index, about, contact}

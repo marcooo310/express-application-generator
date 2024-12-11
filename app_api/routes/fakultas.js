@@ -1,25 +1,30 @@
-// Mengimpor modul express untuk membuat router
-const express = require("express");
-// Membuat instance router dari express
-const router = express.Router();
-// Mengimpor Controller fakultas untuk menangani logika bisnis
-const fakultasController = require("../controllers/fakultasController");
+// models/fakultas.js
+// Mengimpor modul mongoose untuk mengelola skema dan model MongoDB
+const mongoose = require("mongoose");
 
-// Mengimpor middleware untuk autentikasi dan pengecekan peran
-const authMiddleware = require("../middleware/authMiddleware");
-const roleMiddleware = require("../middleware/roleMiddleware");
+// Definisikan skema untuk fakultas
+const fakultasSchema = new mongoose.Schema({
+// Field untuk nama fakultas
+    nama: {
+        type: String, // Tipe data string
+        required: true, // Field ini wajib diisi
+        trim: true, // Menghapus spasi di awal dan akhir string
+    },
+// Field untuk singkatan fakultas
+    singkatan: {
+        type: String, // Tipe data string
+        required: true, // Field ini wajib diisi
+        trim: true, // Menghapus spasi di awal dan akhir string
+    },
+// Field untuk menyimpan tanggal pembuatan data fakultas
+    createdAt: {
+        type: Date, // Tipe data tanggal
+        default: Date.now, // Default adalah tanggal dan waktu saat ini
+    },
+});
 
-// Definisi rute untuk fakultas
-// Mengatur rute GET untuk mendapatkan semua data fakultas
-router.get("/", authMiddleware, fakultasController.getAllFakultas);
-// Mengatur rute POST untuk membuat data fakultas baru
-router.post("/", authMiddleware, roleMiddleware("admin"), fakultasController.createFakultas);
-// Mengatur rute GET untuk mendapatkan data fakultas berdasarkan ID
-router.get("/:id",authMiddleware, fakultasController.getFakultasById);
-// Mengatur rute PUT untuk memperbarui data fakultas berdasarkan ID
-router.put("/:id", authMiddleware, roleMiddleware("admin"),fakultasController.updateFakultas);
-// Mengatur rute DELETE untuk menghapus data fakultas berdasarkan ID
-router.delete("/:id", authMiddleware, roleMiddleware("admin"), fakultasController.deleteFakultas);
+// Buat model Fakultas dari skema yang telah didefinisikan
+const Fakultas = mongoose.model("Fakultas", fakultasSchema);
 
-// Mengeksport router agar dapat digunakan di file lain (misalnya, di app.js)
-module.exports = router;
+// Mengekspor model Fakultas agar dapat digunakan di file lain
+module.exports = Fakultas;

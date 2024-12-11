@@ -1,35 +1,29 @@
-// models/prodi.js
-// Mengimpor modul mongoose untuk mengelola skema dan model MongoDB
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');// Mengimpor Modul mongoose untuk mengelola skema dan model
 
-// Definisikan skema untuk prodi
-const prodiSchema = new mongoose.Schema({
-    // Field untuk nama prodi
-    nama: {
+const prodiSchema = new mongoose.Schema({// Definisikan skema untuk fakultas
+    nama: {// Field untuk nama fakultas
         type: String, // Tipe data string
         required: true, // Field ini wajib diisi
         trim: true, // Menghapus spasi di awal dan akhir string
     },
-    // Field untuk singkatan prodi
-    singkatan: {
+    singkatan: {// Field untuk singkatan fakultas
         type: String, // Tipe data string
         required: true, // Field ini wajib diisi
         trim: true, // Menghapus spasi di awal dan akhir string
     },
-    fakultas_id: {
+    fakultas_id: {// Field untuk singkatan fakultas
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Fakultas",
-        required: true,
+        ref: "Fakultas", // Field ini wajib diisi   
+        required: true, // Menghapus spasi di awal dan akhir string
     },
-    // Field untuk menyimpan tanggal pembuatan data prodi
-    createdAt: {
+    createdAt: {// Field untuk menyimpan tanggal pembuatan data fakultas
         type: Date, // Tipe data tanggal
         default: Date.now, // Default adalah tanggal dan waktu saat ini
     },
 });
 
-// Buat model prodi dari skema yang telah didefinisikan
-const prodi = mongoose.model("prodi", prodiSchema);
+// Buat model Fakultas dari skema yang telah didefinisikan
+const Prodi = mongoose.model("Prodi", prodiSchema);
 
-// Mengekspor model prodi agar dapat digunakan di file lain
-module.exports = prodi;
+// Mengekspor model Fakultas agar dapat digunakan di file lain
+module.exports = Prodi;

@@ -4,19 +4,19 @@ const mongoose = require("mongoose");
 
 // Definisikan skema untuk fakultas
 const fakultasSchema = new mongoose.Schema({
-    // Field untuk nama fakultas
+// Field untuk nama fakultas
     nama: {
         type: String, // Tipe data string
         required: true, // Field ini wajib diisi
         trim: true, // Menghapus spasi di awal dan akhir string
     },
-    // Field untuk singkatan fakultas
+// Field untuk singkatan fakultas
     singkatan: {
         type: String, // Tipe data string
         required: true, // Field ini wajib diisi
         trim: true, // Menghapus spasi di awal dan akhir string
     },
-    // Field untuk menyimpan tanggal pembuatan data fakultas
+// Field untuk menyimpan tanggal pembuatan data fakultas
     createdAt: {
         type: Date, // Tipe data tanggal
         default: Date.now, // Default adalah tanggal dan waktu saat ini

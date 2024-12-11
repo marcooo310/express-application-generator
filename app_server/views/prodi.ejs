@@ -1,22 +1,23 @@
-<div class="container">
-<h2>Program Studi</h2>
-<table class="table table-success table-striped">
-    <thead>
-        <tr>
-            <th>Nama Prodi</th>
-            <th>Fakultas</th>
-            <th>Singkatan</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% prodi.forEach(data => { %>
-            <tr class=>
-                <td><%= data.prodi %></td>
-                <td><%= data.fakultas %></td>
-                <td><%= data.singkatan %></td>
-            </tr>
-        <% }) %>
-    </tbody>
-</table>
-</div>
-</div>
+<div class = "container">
+    <h1>Program Studi</h1>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th scope="col">Nama Prodi</th>
+                  <th scope="col">Singkatan</th>
+                  <th scope="col">Fakultas</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% prodi.forEach(data => { %>
+                  <tr class =>
+                      <td><%= data.nama %></td>
+                      <td><%= data.singkatan %></td>
+                      <td>
+                          <%= data.fakultas_id && data.fakultas_id.nama ? data.fakultas_id.nama :
+                          'Belum ada fakultas' %>
+                      </td>
+                  </tr>
+              <% }) %>
+          </tbody>
+      </table>

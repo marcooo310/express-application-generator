@@ -1,21 +1,29 @@
-// Mengimpor modul express untuk membuat router
-const express = require("express");
-// Membuat instance router dari express
-const router = express.Router();
-// Mengimpor Controller prodi untuk menangani logika bisnis
-const prodiController = require("../controllers/prodiController");
+const mongoose = require('mongoose');// Mengimpor Modul mongoose untuk mengelola skema dan model
 
-// Definisi rute untuk prodi
-// Mengatur rute GET untuk mendapatkan semua data prodi
-router.get("/", prodiController.getAllProdi);
-// Mengatur rute POST untuk membuat data prodi baru
-router.post("/", prodiController.createProdi);
-// Mengatur rute GET untuk mendapatkan data prodi berdasarkan ID
-router.get("/:id", prodiController.getProdiById);
-// Mengatur rute PUT untuk memperbarui data prodi berdasarkan ID
-router.put("/:id", prodiController.updateProdi);
-// Mengatur rute DELETE untuk menghapus data prodi berdasarkan ID
-router.delete("/:id", prodiController.deleteProdi);
+const prodiSchema = new mongoose.Schema({// Definisikan skema untuk fakultas
+    nama: {// Field untuk nama fakultas
+        type: String, // Tipe data string
+        required: true, // Field ini wajib diisi
+        trim: true, // Menghapus spasi di awal dan akhir string
+    },
+    singkatan: {// Field untuk singkatan fakultas
+        type: String, // Tipe data string
+        required: true, // Field ini wajib diisi
+        trim: true, // Menghapus spasi di awal dan akhir string
+    },
+    fakultas_id: {// Field untuk singkatan fakultas
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Fakultas", // Field ini wajib diisi   
+        required: true, // Menghapus spasi di awal dan akhir string
+    },
+    createdAt: {// Field untuk menyimpan tanggal pembuatan data fakultas
+        type: Date, // Tipe data tanggal
+        default: Date.now, // Default adalah tanggal dan waktu saat ini
+    },
+});
 
-// Mengeksport router agar dapat digunakan di file lain (misalnya, di app.js)
-module.exports = router;
+// Buat model Fakultas dari skema yang telah didefinisikan
+const Prodi = mongoose.model("Prodi", prodiSchema);
+
+// Mengekspor model Fakultas agar dapat digunakan di file lain
+module.exports = Prodi;

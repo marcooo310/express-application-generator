@@ -3,41 +3,47 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const expressLayout = require("express-ejs-layouts")
+const expressLayout = require('express-ejs-layouts'); // impor modul express-ejs-layouts
+const cors = require("cors"); // Import cors
 const connectDB = require("./app_api/models/db")
 
 var indexRouter = require('./app_server/routes/index');
+const fakultasRouter = require('./app_server/routes/fakultas')
 var usersRouter = require('./app_server/routes/users');
 var prodiRouter = require('./app_server/routes/prodi');
-const fakultasRouter = require('./app_server/routes/fakultas');
 
 const fakultasRouterApi = require('./app_api/routes/fakultas');
 const prodiRouterApi = require('./app_api/routes/prodi');
 const authRouterApi = require('./app_api/routes/auth');
+const mahasiswaRouterApi = require('./app_api/routes/mahasiswa');
 
-require("dotenv").config();
+require("dotenv").config(); // load environment variables
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname,'app_server', 'views'));
+app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'main'); // Menetapkan main.ejs sebagai layout default
 
-app.use(expressLayout);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressLayout);
+app.use(cors()); // Gunakan middleware cors
 
-
-app.use("/fakultas", fakultasRouter);
 app.use('/', indexRouter);
+app.use('/fakultas', fakultasRouter);
 app.use('/users', usersRouter);
 app.use('/prodi', prodiRouter);
+
 app.use('/api/fakultas', fakultasRouterApi);
 app.use('/api/prodi', prodiRouterApi);
 app.use('/api/auth', authRouterApi);
+app.use('/api/mahasiswa', mahasiswaRouterApi);
+
 
 // Connect to MongoDB
 connectDB();
